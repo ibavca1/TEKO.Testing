@@ -1,0 +1,10 @@
+﻿@page "/persons/detail"
+<h3>PersonDetail</h3>
+
+<h1>Hello word!!! I am @Id</h1>
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public int Id{ get; set; }
+}

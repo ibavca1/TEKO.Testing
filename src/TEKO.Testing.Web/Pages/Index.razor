@@ -1,0 +1,50 @@
+﻿@page "/"
+@using FastEndpoints;
+@using Microsoft.AspNetCore.Components.Web
+
+@using Newtonsoft.Json;
+@using TEKO.Testing.Core.PeopleAggregate;
+@using TEKO.Testing.Web.Shared
+@using Endpoints.ContributorEndpoints;
+@inject IHttpClientFactory _http
+@inject NavigationManager nav
+
+<MudList>
+    @foreach(var person in persons!)
+    {
+        <MudListItem>
+            <MudCard>
+                <MudCardContent>
+                    <MudText>@person.Surname @person.Name @person.Patronymic</MudText>
+                    <MudText Typo="Typo.body2">Description</MudText>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="@(e=>PersonDetail(person.Id))" >Узнать больше</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudListItem>
+    }
+
+</MudList>
+
+@code{
+    private List<Person>? persons { get; set; }
+    private void PersonDetail(int id)
+    {
+        
+        nav.NavigateTo($"/persons/detail/{id}");
+    }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        var client = _http.CreateClient();
+        var result = client.GetFromJsonAsync<PersonListResponse>("http://localhost:57679/persons").Result;
+        persons = result?.Persons.Select(x => new Person
+            { 
+                Id = x.Id, 
+                Name = x.Name, 
+                Surname = x.Surname, 
+                Patronymic = x.Patronymic
+            }).ToList();
+    }
+}
