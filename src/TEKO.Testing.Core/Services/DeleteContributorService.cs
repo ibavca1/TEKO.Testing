@@ -5,6 +5,7 @@ using TEKO.Testing.Core.Interfaces;
 using Ardalis.SharedKernel;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using TEKO.Testing.Core.PeopleAggregate;
 
 namespace TEKO.Testing.Core.Services;
 
@@ -12,11 +13,11 @@ public class DeleteContributorService : IDeleteContributorService
 {
   private readonly IRepository<Contributor> _repository;
   private readonly IMediator _mediator;
-  private readonly ILogger<DeleteContributorService> _logger;
+  private readonly ILogger<AddPersonService> _logger;
 
   public DeleteContributorService(IRepository<Contributor> repository,
     IMediator mediator,
-    ILogger<DeleteContributorService> logger)
+    ILogger<AddPersonService> logger)
   {
     _repository = repository;
     _mediator = mediator;

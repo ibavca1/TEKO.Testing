@@ -5,32 +5,33 @@ using TEKO.Testing.Core.Interfaces;
 using Ardalis.SharedKernel;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using TEKO.Testing.Core.PeopleAggregate;
 
 namespace TEKO.Testing.Core.Services;
 
-public class AddPersonService : IDeleteContributorService
+public class AddPersonService : IAddPersonService
 {
-  private readonly IRepository<Contributor> _repository;
+  private readonly IRepository<Person> _repository;
   private readonly IMediator _mediator;
-  private readonly ILogger<DeleteContributorService> _logger;
+  private readonly ILogger<AddPersonService> _logger;
 
-  public AddPersonService(IRepository<Contributor> repository,
+  public AddPersonService(IRepository<Person> repository,
     IMediator mediator,
-    ILogger<DeleteContributorService> logger)
+    ILogger<AddPersonService> logger)
   {
     _repository = repository;
     _mediator = mediator;
     _logger = logger;
   }
 
-  public async Task<Result> DeleteContributor(int contributorId)
+  public async Task<Result> AddPerson(Person person)
   {
-    _logger.LogInformation("Deleting Contributor {contributorId}", contributorId);
-    var aggregateToDelete = await _repository.GetByIdAsync(contributorId);
-    if (aggregateToDelete == null) return Result.NotFound();
+    _logger.LogInformation("Add Person {personId}", person.Id);
+    var aggregateToAdd = await _repository.GetByIdAsync(person.Id);
+    if (aggregateToAdd == null) return Result.NotFound();
 
-    await _repository.DeleteAsync(aggregateToDelete);
-    var domainEvent = new ContributorDeletedEvent(contributorId);
+    await _repository.AddAsync(aggregateToAdd);
+    var domainEvent = new ContributorDeletedEvent(person.Id);
     await _mediator.Publish(domainEvent);
     return Result.Success();
   }
