@@ -1,5 +1,4 @@
 ﻿using Ardalis.Result;
-using TEKO.Testing.Core.ContributorAggregate;
 using TEKO.Testing.Core.ContributorAggregate.Events;
 using TEKO.Testing.Core.Interfaces;
 using Ardalis.SharedKernel;
