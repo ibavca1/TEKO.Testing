@@ -1,6 +1,6 @@
 ﻿using TEKO.Testing.Web.ContributorEndpoints;
 
-namespace TEKO.Testing.Web.Endpoints.ContributorEndpoints;
+namespace TEKO.Testing.Web.Persons;
 
 public class PersonListResponse
 {

@@ -1,13 +1,10 @@
 ﻿@page "/"
-@using FastEndpoints;
-@using Microsoft.AspNetCore.Components.Web
 
-@using Newtonsoft.Json;
 @using TEKO.Testing.Core.PeopleAggregate;
-@using TEKO.Testing.Web.Shared
-@using Endpoints.ContributorEndpoints;
-@inject IHttpClientFactory _http
-@inject NavigationManager nav
+
+@using TEKO.Testing.Web.Persons
+@inject IHttpClientFactory Http
+@inject NavigationManager Nav
 
 <MudList>
     @foreach(var person in persons!)
@@ -32,12 +29,12 @@
     private void PersonDetail(int id)
     {
         
-        nav.NavigateTo($"/persons/detail/{id}");
+        Nav.NavigateTo($"/persons/detail/{id}");
     }
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        var client = _http.CreateClient();
+        var client = Http.CreateClient();
         var result = client.GetFromJsonAsync<PersonListResponse>("http://localhost:57679/persons").Result;
         persons = result?.Persons.Select(x => new Person
             { 

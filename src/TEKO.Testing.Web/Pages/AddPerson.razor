@@ -1,0 +1,46 @@
+﻿@page "/persons/add"
+@using System.ComponentModel.DataAnnotations
+@using TEKO.Testing.Web.ContributorEndpoints
+@using TEKO.Testing.Web.Persons
+@inject HttpClient Http
+
+
+<MudTextField Label="Имя" Variant="Variant.Outlined"
+              @bind-Value="model.Name" For="@(() => model.Name)"/>
+<MudTextField Label="Фамилия" Variant="Variant.Outlined"
+              @bind-Value="model.Surname" For="@(() => model.Surname)"/>
+<MudTextField Label="Отчество" Variant="Variant.Outlined"
+              @bind-Value="model.Patronymic" For="@(() => model.Patronymic)"/>
+
+
+<MudCardActions>
+    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="@(Add)">Save</MudButton>
+</MudCardActions>
+
+ @code
+ {
+     RegisterPersonForm model = new RegisterPersonForm();
+     //bool success;
+
+     public class RegisterPersonForm
+     {
+         [Required]
+         public int  Id { get; set; }
+        
+         [Required]
+         public string? Name { get; set; }
+
+         [Required]
+         public string? Surname { get; set; }
+
+         [Required]
+         public string? Patronymic { get; set; }
+
+     }
+
+
+     public void Add()
+     {
+         Http.PostAsJsonAsync(new Uri("http://localhost:57679/addperson"), new RegisterPersonForm());
+     }
+ }

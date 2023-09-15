@@ -1,5 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Web
+@using TEKO.Testing.UseCases.Persons
 @inherits LayoutComponentBase
+@inject NavigationManager Nav
 
 <MudThemeProvider />
 <MudDialogProvider />
@@ -9,7 +11,9 @@
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        <MudIconButton Icon="@Icons.Material.Filled.Add" Color="Color.Inherit" Edge="Edge.End" OnClick="@(() => AddPersons())" />
+            
+        
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="2" Width="300px">
         <MudDrawerHeader />
@@ -21,9 +25,15 @@
 </MudLayout>
 @code {
     bool _drawerOpen = true;
-
+    PersonDTO Person = new PersonDTO(1001, "", "", "");
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
+    }
+
+    void AddPersons()
+    {
+        StateHasChanged();
+        Nav.NavigateTo($"/persons/add");
     }
 }

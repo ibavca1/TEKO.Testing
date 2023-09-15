@@ -2,6 +2,7 @@
 using MediatR;
 using TEKO.Testing.Web.Endpoints.ContributorEndpoints;
 using TEKO.Testing.UseCases.Contributors.List;
+using TEKO.Testing.Web.Persons;
 
 namespace TEKO.Testing.Web.ContributorEndpoints;
 
