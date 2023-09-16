@@ -17,8 +17,8 @@ public class ListPersonsQueryService : IListPersonsQueryService
   }
   public async Task<IEnumerable<PersonDTO>> ListAsync()
   {
-    var result = await _db.Persons.FromSqlRaw("SELECT id, name, surname, patronymic from persons")
-      .Select(p=>new PersonDTO(p.Id, p.Name!, p.Surname!, p.Patronymic!))
+    var result = await _db.Persons.FromSqlRaw("SELECT id, name, surname, patronymic,  Gender, Age from persons")
+      .Select(p=>new PersonDTO(p.Id, p.Name!, p.Surname!, p.Patronymic!,p.Gender,p.Age))
       .ToListAsync();
     return result;
   }

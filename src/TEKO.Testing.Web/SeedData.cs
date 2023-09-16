@@ -32,9 +32,11 @@ public static class SeedData
     int namesCount = 0;
     int surnamesCount = 0;
     int patronymicsCount = 0;
-    using StreamReader personsNameReader = new StreamReader(@"d:\names.txt");
-    using StreamReader presonsSurnameReader = new StreamReader(@"d:\surnames.txt");
-    using StreamReader personsPatronymicsReader = new StreamReader(@"d:\patronymics.txt");
+    var dir = Directory.GetCurrentDirectory();
+    using StreamReader personsNameReader = new StreamReader($"{dir}\\names.txt");
+    using StreamReader presonsSurnameReader = new StreamReader($"{dir}\\surnames.txt");
+    using StreamReader personsPatronymicsReader = new StreamReader($"{dir}\\patronymics.txt");
+    using StreamReader personsAppointmentsReader = new StreamReader($"{dir}\\Appointment.txt");
     var names = new List<string>();
     var surnames = new List<string>();
     var patronymics = new List<string>();

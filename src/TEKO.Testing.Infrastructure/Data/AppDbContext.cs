@@ -1,6 +1,6 @@
-﻿using System.Reflection;
+﻿
 using Ardalis.SharedKernel;
-using TEKO.Testing.Core.ContributorAggregate;
+
 using Microsoft.EntityFrameworkCore;
 using TEKO.Testing.Core.PeopleAggregate;
 
@@ -19,6 +19,7 @@ public class AppDbContext : DbContext
 
   public DbSet<Person> Persons => Set<Person>();
   public DbSet<TimeOff> TimeOffs => Set<TimeOff>();
+  //public DbSet<Appointment> Appointment => Set<Appointment>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

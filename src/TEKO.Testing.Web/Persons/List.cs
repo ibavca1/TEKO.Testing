@@ -3,6 +3,7 @@ using MediatR;
 using TEKO.Testing.Web.Endpoints.ContributorEndpoints;
 using TEKO.Testing.UseCases.Contributors.List;
 using TEKO.Testing.Web.Persons;
+using TEKO.Testing.Web.PersonsEndpoints;
 
 namespace TEKO.Testing.Web.ContributorEndpoints;
 
@@ -35,7 +36,7 @@ public class ListPersons : EndpointWithoutRequest<PersonListResponse>
     {
       Response = new PersonListResponse
       {
-        Persons = result.Value.Select(c => new PersonRecord(c.Id, c.Name, c.Surname, c.Patronymic)).ToList()
+        Persons = result.Value.Select(c => new PersonRecord(c.Id, c.Name, c.Surname, c.Patronymic, 0, 0, 0)).ToList()
       };
     }
   }
