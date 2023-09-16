@@ -12,9 +12,9 @@ namespace TEKO.Testing.UseCases.Persons.Get;
 
 public class GetPersonHandler : IQueryHandler<GetPersonQuery, Result<PersonDTO>>
 {
-  private readonly IReadRepository<Person> _repository;
+  private readonly IReadRepository<Core.PeopleAggregate.Person> _repository;
 
-  public GetPersonHandler(IReadRepository<Person> repository)
+  public GetPersonHandler(IReadRepository<Core.PeopleAggregate.Person> repository)
   {
     _repository = repository;
   }
