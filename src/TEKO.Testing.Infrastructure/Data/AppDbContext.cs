@@ -2,7 +2,7 @@
 using Ardalis.SharedKernel;
 
 using Microsoft.EntityFrameworkCore;
-using TEKO.Testing.Core.PeopleAggregate;
+using TEKO.Testing.Core.PersonAggregate;
 
 namespace TEKO.Testing.Infrastructure.Data;
 
@@ -19,7 +19,7 @@ public class AppDbContext : DbContext
 
   public DbSet<Person> Persons => Set<Person>();
   public DbSet<TimeOff> TimeOffs => Set<TimeOff>();
-  //public DbSet<Appointment> Appointment => Set<Appointment>();
+  public DbSet<Appointment> Appointment => Set<Appointment>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
@@ -28,6 +28,8 @@ public class AppDbContext : DbContext
       .HasMany(e=>e.TimeOff)
       .WithOne(e=>e.Person)
       .HasForeignKey(e=>e.PersonId);
+    // modelBuilder.Entity<Person>()
+    //   .HasOne(a => a.Appointment);
 
   }
 

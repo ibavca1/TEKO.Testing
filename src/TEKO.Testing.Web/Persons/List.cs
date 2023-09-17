@@ -36,7 +36,7 @@ public class ListPersons : EndpointWithoutRequest<PersonListResponse>
     {
       Response = new PersonListResponse
       {
-        Persons = result.Value.Select(c => new PersonRecord(c.Id, c.Name, c.Surname, c.Patronymic, 0, 0, 0)).ToList()
+        Persons = result.Value.Select(c => new PersonRecord(c.Id, c.Name, c.Surname, c.Patronymic, c.appointment, 0, 0)).ToList()
       };
     }
   }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TEKO.Testing.Core.PeopleAggregate;
+using TEKO.Testing.Core.PersonAggregate;
 
 namespace TEKO.Testing.Infrastructure.Data.Config;
 public class PersonConfiguration : IEntityTypeConfiguration<Person>

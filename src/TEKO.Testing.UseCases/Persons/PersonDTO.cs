@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TEKO.Testing.Core.PersonAggregate;
 
 namespace TEKO.Testing.UseCases.Persons;
-public record PersonDTO(int Id, string Name, string Surname, string Patronymic, int Gender, int Age);
+public record PersonDTO(int Id, string Name, string Surname, string Patronymic, int Gender, int Age, Appointment appointment);

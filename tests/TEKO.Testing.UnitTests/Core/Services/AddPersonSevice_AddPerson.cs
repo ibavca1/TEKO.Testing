@@ -4,7 +4,7 @@ using TEKO.Testing.Core.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using TEKO.Testing.Core.PeopleAggregate;
+using TEKO.Testing.Core.PersonAggregate;
 using Xunit;
 
 namespace TEKO.Testing.UnitTests.Core.Services;

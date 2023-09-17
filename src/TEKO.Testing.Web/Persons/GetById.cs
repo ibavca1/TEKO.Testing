@@ -1,6 +1,7 @@
 ﻿using FastEndpoints;
 using MediatR;
 using Ardalis.Result;
+using TEKO.Testing.Core.PersonAggregate;
 using TEKO.Testing.UseCases.Contributors.Get;
 using TEKO.Testing.Web.Endpoints.PersonsEndpoints;
 using TEKO.Testing.Web.ContributorEndpoints;
@@ -9,12 +10,7 @@ using TEKO.Testing.Web.PersonsEndpoints;
 
 namespace TEKO.Testing.Web.PersonEndpoints;
 
-/// <summary>
-/// Get a Contributor by integer ID.
-/// </summary>
-/// <remarks>
-/// Takes a positive integer ID and returns a matching Contributor record.
-/// </remarks>
+
 public class GetById : Endpoint<GetPersonByIdRequest, PersonRecord>
 {
   private readonly IMediator _mediator;
@@ -46,7 +42,7 @@ public class GetById : Endpoint<GetPersonByIdRequest, PersonRecord>
     if (result.IsSuccess)
     {
       //TODO: Info not full
-      Response = new PersonRecord(result.Value.Id, result.Value.Name, result.Value.Surname, result.Value.Patronymic, 0 , 0, 0);
+      Response = new PersonRecord(result.Value.Id, result.Value.Name, result.Value.Surname, result.Value.Patronymic, new Appointment() , 0, 0);
     }
   }
 }

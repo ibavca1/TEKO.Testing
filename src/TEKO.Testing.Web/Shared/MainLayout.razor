@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components.Web
+@using TEKO.Testing.Core.PersonAggregate
 @using TEKO.Testing.UseCases.Persons
 @inherits LayoutComponentBase
 @inject NavigationManager Nav
@@ -25,7 +26,7 @@
 </MudLayout>
 @code {
     bool _drawerOpen = true;
-    PersonDTO Person = new PersonDTO(1001, "", "", "", 0,0);
+    PersonDTO Person = new PersonDTO(1001, "", "", "", 0,0, new Appointment());
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;

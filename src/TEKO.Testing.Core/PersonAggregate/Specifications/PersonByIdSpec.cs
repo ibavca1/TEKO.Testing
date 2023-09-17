@@ -1,5 +1,5 @@
 ﻿using Ardalis.Specification;
-using TEKO.Testing.Core.PeopleAggregate;
+
 
 namespace TEKO.Testing.Core.PersonAggregate.Specifications;
 

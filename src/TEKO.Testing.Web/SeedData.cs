@@ -1,7 +1,7 @@
 ﻿using TEKO.Testing.Core.ContributorAggregate;
 using TEKO.Testing.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using TEKO.Testing.Core.PeopleAggregate;
+using TEKO.Testing.Core.PersonAggregate;
 
 namespace TEKO.Testing.Web;
 
@@ -32,18 +32,19 @@ public static class SeedData
     int namesCount = 0;
     int surnamesCount = 0;
     int patronymicsCount = 0;
+    int appointmentsCount = 0;
     var dir = Directory.GetCurrentDirectory();
     using StreamReader personsNameReader = new StreamReader($"{dir}\\names.txt");
     using StreamReader presonsSurnameReader = new StreamReader($"{dir}\\surnames.txt");
     using StreamReader personsPatronymicsReader = new StreamReader($"{dir}\\patronymics.txt");
-    using StreamReader personsAppointmentsReader = new StreamReader($"{dir}\\Appointment.txt");
+    using StreamReader personsAppointmentsReader = new StreamReader($"{dir}\\appointment.txt");
     var names = new List<string>();
     var surnames = new List<string>();
     var patronymics = new List<string>();
+    var appointments = new List<string>();
     var name = personsNameReader.ReadLine();
     while(name != null)
     {
-      //TODO: Add list Names
       names.Add(name.Trim());
       namesCount++;
       name = personsNameReader.ReadLine();
@@ -52,7 +53,6 @@ public static class SeedData
     var surname = presonsSurnameReader.ReadLine();
     while(surname != null)
     {
-      //TODO: Add list Surnames
       surnames.Add(surname.Trim());
       surnamesCount++;
       surname = presonsSurnameReader.ReadLine();
@@ -61,13 +61,17 @@ public static class SeedData
     var patronymic = personsPatronymicsReader.ReadLine();
     while (patronymic != null)
     {
-      //TODO: Add list patronymics
       patronymics.Add(patronymic);
       patronymicsCount++;
       patronymic = personsPatronymicsReader.ReadLine();
     }
-
-
+    var appointment = personsAppointmentsReader.ReadLine();
+    while (appointment != null)
+    {
+      appointments.Add(appointment);
+      appointmentsCount++;
+      appointment = personsAppointmentsReader.ReadLine();
+    }
     List<Person> persons = new List<Person>();
     foreach(int number in Enumerable.Range(1, 100))
     {
@@ -75,7 +79,11 @@ public static class SeedData
       {
         Name = names.ElementAt(rnd.Next(0, namesCount)),
         Surname = surnames.ElementAt(rnd.Next(0,surnamesCount)),
-        Patronymic = patronymics.ElementAt(rnd.Next(0, patronymicsCount))
+        Patronymic = patronymics.ElementAt(rnd.Next(0, patronymicsCount)),
+        Appointment = new Appointment
+        {
+          Name = appointments.ElementAt(rnd.Next(0, appointmentsCount))
+        }
       });
     }
     foreach (var item in dbContext.Persons)

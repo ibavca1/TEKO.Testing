@@ -1,5 +1,5 @@
 ﻿using Ardalis.Result;
-using TEKO.Testing.Core.PeopleAggregate;
+using TEKO.Testing.Core.PersonAggregate;
 
 namespace TEKO.Testing.Core.Interfaces;
 

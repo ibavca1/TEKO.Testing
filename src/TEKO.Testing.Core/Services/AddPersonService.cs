@@ -4,7 +4,7 @@ using TEKO.Testing.Core.Interfaces;
 using Ardalis.SharedKernel;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using TEKO.Testing.Core.PeopleAggregate;
+using TEKO.Testing.Core.PersonAggregate;
 
 namespace TEKO.Testing.Core.Services;
 

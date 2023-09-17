@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEKO.Testing.Core.PeopleAggregate;
+namespace TEKO.Testing.Core.PersonAggregate;
 public class TimeOff
 {
   public int Id { get; set; }

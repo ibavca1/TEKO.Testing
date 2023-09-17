@@ -1,3 +1,5 @@
-﻿namespace TEKO.Testing.Web.PersonsEndpoints;
+﻿using TEKO.Testing.Core.PersonAggregate;
 
-public record PersonRecord(int Id, string Name, string Surname, string Patronymic, int AppointmentId, int Age, int Gender);
+namespace TEKO.Testing.Web.PersonsEndpoints;
+
+public record PersonRecord(int Id, string Name, string Surname, string Patronymic, Appointment Appointment, int Age, int Gender);
