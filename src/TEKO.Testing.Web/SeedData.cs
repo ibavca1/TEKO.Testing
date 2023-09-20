@@ -28,10 +28,16 @@ public static class SeedData
   public static void PopulateTestData(AppDbContext dbContext)
   {
 
-    Random rnd = new Random();
-    int namesCount = 0;
-    int surnamesCount = 0;
-    int patronymicsCount = 0;
+    Random rndPerson = new Random();
+    Random rndGender = new Random();
+    int namesCountMale = 0;
+    int surnamesCountMale = 0;
+    int patronymicsCountMale = 0;
+    int namesCountFamale = 0;
+    int surnamesCountFamale = 0;
+    int patronymicsCountFamale = 0;
+
+    
     int appointmentsCount = 0;
     var dir = Directory.GetCurrentDirectory();
     using StreamReader personsNameMaleReader = new StreamReader($"{dir}\\names_male.txt");
@@ -54,14 +60,14 @@ public static class SeedData
     while(nameMale != null)
     {
       namesMale.Add(nameMale.Trim());
-      namesCount++;
+      namesCountMale++;
       nameMale = personsNameMaleReader.ReadLine();
     }
     var nameFamale = personsNameFamaleReader.ReadLine();
     while(nameFamale != null)
     {
       namesFamale.Add(nameFamale.Trim());
-      namesCount++;
+      namesCountFamale++;
       nameFamale = personsNameFamaleReader.ReadLine();
     }
     #endregion
@@ -71,14 +77,14 @@ public static class SeedData
     while(surnameMale != null)
     {
       surnamesMale.Add(surnameMale.Trim());
-      surnamesCount++;
+      surnamesCountMale++;
       surnameMale = presonsSurnameMaleReader.ReadLine();
     }
     var surnameFamale = presonsSurnameFamaleReader.ReadLine();
     while(surnameFamale != null)
     {
       surnamesFamale.Add(surnameFamale.Trim());
-      surnamesCount++;
+      surnamesCountFamale++;
       surnameFamale = presonsSurnameFamaleReader.ReadLine();
     }
     #endregion
@@ -88,7 +94,7 @@ public static class SeedData
     while (patronymicMale != null)
     {
       patronymicsMale.Add(patronymicMale);
-      patronymicsCount++;
+      patronymicsCountMale++;
       patronymicMale = personsPatronymicsMaleReader.ReadLine();
     }
     
@@ -96,7 +102,7 @@ public static class SeedData
     while (patronymicFamale != null)
     {
       patronymicsMale.Add(patronymicFamale);
-      patronymicsCount++;
+      patronymicsCountFamale++;
       patronymicFamale = personsPatronymicsFamaleReader.ReadLine();
     }    
     #endregion
@@ -112,16 +118,33 @@ public static class SeedData
     List<Person> persons = new List<Person>();
     foreach(int number in Enumerable.Range(1, 100))
     {
-      persons.Add(item: new Person
+      if(rndGender.Next(0,1) == 0)
       {
-        Name = names.ElementAt(rnd.Next(0, namesCount)),
-        Surname = surnames.ElementAt(rnd.Next(0,surnamesCount)),
-        Patronymic = patronymics.ElementAt(rnd.Next(0, patronymicsCount)),
-        Appointment = new Appointment
+        persons.Add(item: new Person
         {
-          Name = appointments.ElementAt(rnd.Next(0, appointmentsCount))
-        }
-      });
+          Name = namesMale.ElementAt(rndPerson.Next(0, namesCountMale)),
+          Surname = surnamesMale.ElementAt(rndPerson.Next(0,surnamesCountMale)),
+          Patronymic = patronymicsMale.ElementAt(rndPerson.Next(0, patronymicsCountMale)),
+          Appointment = new Appointment
+          {
+            Name = appointments.ElementAt(rndPerson.Next(0, appointmentsCount))
+          }
+        });        
+      }
+      else
+      {
+        persons.Add(item: new Person
+        {
+          Name = namesFamale.ElementAt(rndPerson.Next(0, namesCountFamale)),
+          Surname = surnamesFamale.ElementAt(rndPerson.Next(0,surnamesCountFamale)),
+          Patronymic = patronymicsFamale.ElementAt(rndPerson.Next(0, patronymicsCountFamale)),
+          Appointment = new Appointment
+          {
+            Name = appointments.ElementAt(rndPerson.Next(0, appointmentsCount))
+          }
+        });           
+      }
+
     }
     foreach (var item in dbContext.Persons)
     {
