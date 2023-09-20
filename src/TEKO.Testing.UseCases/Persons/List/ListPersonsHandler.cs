@@ -1,5 +1,6 @@
 ﻿using Ardalis.Result;
 using Ardalis.SharedKernel;
+using TEKO.Testing.Core.PersonAggregate;
 using TEKO.Testing.UseCases.Contributors.List;
 
 namespace TEKO.Testing.UseCases.Persons.List;
@@ -16,7 +17,14 @@ public class ListPersonsHandler : IQueryHandler<ListPersonsQuery, Result<IEnumer
   public async Task<Result<IEnumerable<PersonDTO>>> Handle(ListPersonsQuery request, CancellationToken cancellationToken)
   {
     var result = await _query.ListAsync();
-
-    return Result.Success(result);
+    var persons = result.Select(p => new PersonDTO(p.Id,
+      p.Name!,
+      p.Surname!,
+      p.Patronymic!,
+      p.Gender!,
+      p.Age,
+      p.Appointment!,
+      p.TimeOff??new List<TimeOff>()));
+    return Result.Success(persons);
   }
 }

@@ -23,6 +23,13 @@ public class GetPersonHandler : IQueryHandler<GetPersonQuery, Result<PersonDTO>>
     var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
     if (entity == null) return Result.NotFound();
 
-    return new PersonDTO(entity.Id, entity.Name!, entity.Surname!, entity.Patronymic!, 0,0, new Appointment());
+    return new PersonDTO(entity.Id, 
+      entity.Name!, 
+      entity.Surname!, 
+      entity.Patronymic!, 
+      entity.Gender!,
+      entity.Age, 
+      entity.Appointment ?? new Appointment(), 
+      entity.TimeOff ?? new List<TimeOff>());
   }
 }

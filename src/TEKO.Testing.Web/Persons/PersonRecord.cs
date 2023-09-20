@@ -2,4 +2,4 @@
 
 namespace TEKO.Testing.Web.PersonsEndpoints;
 
-public record PersonRecord(int Id, string Name, string Surname, string Patronymic, Appointment Appointment, int Age, int Gender);
+public record PersonRecord(int Id, string Name, string Surname, string Patronymic, Appointment Appointment,  int Age, string Gender);

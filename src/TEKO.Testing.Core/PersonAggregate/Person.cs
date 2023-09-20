@@ -8,6 +8,6 @@ public class Person: EntityBase, IAggregateRoot
   public string? Patronymic { get; set; }
   public int Age { get; set; }
   public Appointment? Appointment { get; set; }
-  public int  Gender { get; set; }
-  public ICollection<TimeOff>? TimeOff { get; set; }
+  public string?  Gender { get; set; }
+  public IEnumerable<TimeOff>? TimeOff { get; set; }
 }

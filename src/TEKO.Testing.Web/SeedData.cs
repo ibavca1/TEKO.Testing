@@ -101,7 +101,7 @@ public static class SeedData
     var patronymicFamale = personsPatronymicsFamaleReader.ReadLine();
     while (patronymicFamale != null)
     {
-      patronymicsMale.Add(patronymicFamale);
+      patronymicsFamale.Add(patronymicFamale);
       patronymicsCountFamale++;
       patronymicFamale = personsPatronymicsFamaleReader.ReadLine();
     }    
@@ -118,13 +118,16 @@ public static class SeedData
     List<Person> persons = new List<Person>();
     foreach(int number in Enumerable.Range(1, 100))
     {
-      if(rndGender.Next(0,1) == 0)
+      var gender = rndGender.Next(0, 2);
+      if(gender == 0)
       {
         persons.Add(item: new Person
         {
-          Name = namesMale.ElementAt(rndPerson.Next(0, namesCountMale)),
-          Surname = surnamesMale.ElementAt(rndPerson.Next(0,surnamesCountMale)),
-          Patronymic = patronymicsMale.ElementAt(rndPerson.Next(0, patronymicsCountMale)),
+          Name = namesMale.ElementAt(rndPerson.Next(0, namesMale.Count)),
+          Surname = surnamesMale.ElementAt(rndPerson.Next(0,surnamesMale.Count)),
+          Patronymic = patronymicsMale.ElementAt(rndPerson.Next(0, patronymicsMale.Count)),
+          Gender = "М",
+          Age = rndPerson.Next(18, 66),
           Appointment = new Appointment
           {
             Name = appointments.ElementAt(rndPerson.Next(0, appointmentsCount))
@@ -135,12 +138,14 @@ public static class SeedData
       {
         persons.Add(item: new Person
         {
-          Name = namesFamale.ElementAt(rndPerson.Next(0, namesCountFamale)),
-          Surname = surnamesFamale.ElementAt(rndPerson.Next(0,surnamesCountFamale)),
-          Patronymic = patronymicsFamale.ElementAt(rndPerson.Next(0, patronymicsCountFamale)),
+          Name = namesFamale.ElementAt(rndPerson.Next(0, namesFamale.Count)),
+          Surname = surnamesFamale.ElementAt(rndPerson.Next(0,surnamesFamale.Count)),
+          Patronymic = patronymicsFamale.ElementAt(rndPerson.Next(0, patronymicsFamale.Count)),
+          Gender = "Ж",
+          Age = rndPerson.Next(18,61),
           Appointment = new Appointment
           {
-            Name = appointments.ElementAt(rndPerson.Next(0, appointmentsCount))
+            Name = appointments.ElementAt(rndPerson.Next(0, appointments.Count-1))
           }
         });           
       }

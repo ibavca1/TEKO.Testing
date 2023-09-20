@@ -1,5 +1,6 @@
 ﻿@page "/persons/detail/{Id:int}"
 @using System.ComponentModel.DataAnnotations
+@using TEKO.Testing.Core.PersonAggregate
 @using TEKO.Testing.Web.ContributorEndpoints
 @using TEKO.Testing.Web.Persons
 @using TEKO.Testing.Web.PersonsEndpoints
@@ -31,17 +32,17 @@
     {
         base.OnInitialized();
         HttpClient client = Http.CreateClient();
-        List<PersonRecord>? resultPersons = client
-            .GetFromJsonAsync<PersonListResponse>("http://localhost:57679/persons")
-            .Result?.Persons;
-        PersonRecord? person = resultPersons?.FirstOrDefault(p => p.Id == Id);
-        if (person != null)
+        var resultPersons = client
+            .GetFromJsonAsync<PersonRecord>($"http://localhost:57679/persons/detail/{Id}")
+            .Result;
+        if (resultPersons != null)
             model = new RegisterPersonForm
             {
-                Id = person.Id,
-                Name = person.Name,
-                Surname = person.Surname,
-                Patronymic = person.Patronymic
+                Id = resultPersons.Id,
+                Name = resultPersons.Name,
+                Surname = resultPersons.Surname,
+                Patronymic = resultPersons.Patronymic,
+              
             };
     }
 
@@ -63,11 +64,11 @@
         [Required]
         public string? Patronymic { get; set; }
         [Required]
-        public int  AppointmentId { get; set; }
-        [Required]
         public int  Age { get; set; }
         [Required]
-        public int  Gender { get; set; }
+        public string?  Gender { get; set; }
+        [Required]
+        public   List<Core.PersonAggregate.TimeOff>? TimeOffs { get; set; }
     }
 
     private void OnValidSubmit(EditContext context)

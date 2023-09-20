@@ -6,6 +6,7 @@ using TEKO.Testing.UseCases.Contributors.Get;
 using TEKO.Testing.Web.Endpoints.PersonsEndpoints;
 using TEKO.Testing.Web.ContributorEndpoints;
 using TEKO.Testing.UseCases.Persons.Get;
+using TEKO.Testing.Web.Persons;
 using TEKO.Testing.Web.PersonsEndpoints;
 
 namespace TEKO.Testing.Web.PersonEndpoints;
@@ -42,7 +43,8 @@ public class GetById : Endpoint<GetPersonByIdRequest, PersonRecord>
     if (result.IsSuccess)
     {
       //TODO: Info not full
-      Response = new PersonRecord(result.Value.Id, result.Value.Name, result.Value.Surname, result.Value.Patronymic, new Appointment() , 0, 0);
+      Response = new PersonRecord(result.Value.Id, result.Value.Name, result.Value.Surname, result.Value.Patronymic,
+        new Appointment(), 0, "");
     }
   }
 }

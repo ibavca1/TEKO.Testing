@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
+using TEKO.Testing.Core.PersonAggregate;
 using TEKO.Testing.UseCases.Persons;
 using TEKO.Testing.UseCases.Persons.List;
 
@@ -11,11 +11,9 @@ public class ListPersonsQueryService : IListPersonsQueryService
   {
     _db = db;
   }
-  public async Task<IEnumerable<PersonDTO>> ListAsync()
+  public async Task<IEnumerable<Person>> ListAsync()
   {
-    var result = await _db.Persons.FromSqlRaw("SELECT id, name, surname, patronymic,  Gender, Age from persons")
-      .Select(p=>new PersonDTO(p.Id, p.Name!, p.Surname!, p.Patronymic!,p.Gender,p.Age, p.Appointment!))
-      .ToListAsync();
-    return result;
+    var result = await _db.Persons.ToListAsync();
+    return result.Select(x=>x);
   }
 }
