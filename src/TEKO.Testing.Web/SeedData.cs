@@ -34,37 +34,74 @@ public static class SeedData
     int patronymicsCount = 0;
     int appointmentsCount = 0;
     var dir = Directory.GetCurrentDirectory();
-    using StreamReader personsNameReader = new StreamReader($"{dir}\\names.txt");
-    using StreamReader presonsSurnameReader = new StreamReader($"{dir}\\surnames.txt");
-    using StreamReader personsPatronymicsReader = new StreamReader($"{dir}\\patronymics.txt");
-    using StreamReader personsAppointmentsReader = new StreamReader($"{dir}\\appointment.txt");
-    var names = new List<string>();
-    var surnames = new List<string>();
-    var patronymics = new List<string>();
+    using StreamReader personsNameMaleReader = new StreamReader($"{dir}\\names_male.txt");
+    using StreamReader personsNameFamaleReader = new StreamReader($"{dir}\\names_famale.txt");
+    using StreamReader presonsSurnameMaleReader = new StreamReader($"{dir}\\surnames_male.txt");
+    using StreamReader presonsSurnameFamaleReader = new StreamReader($"{dir}\\surnames_famale.txt");
+    using StreamReader personsPatronymicsMaleReader = new StreamReader($"{dir}\\patronymics_male.txt");
+    using StreamReader personsPatronymicsFamaleReader = new StreamReader($"{dir}\\patronymics_famale.txt");
+    using StreamReader personsAppointmentsReader = new StreamReader($"{dir}\\appointments.txt");
+    var namesMale = new List<string>();
+    var namesFamale = new List<string>();
+    var surnamesMale = new List<string>();
+    var surnamesFamale = new List<string>();
+    var patronymicsMale = new List<string>();
+    var patronymicsFamale = new List<string>();
     var appointments = new List<string>();
-    var name = personsNameReader.ReadLine();
-    while(name != null)
+
+    #region Names
+    var nameMale = personsNameMaleReader.ReadLine();
+    while(nameMale != null)
     {
-      names.Add(name.Trim());
+      namesMale.Add(nameMale.Trim());
       namesCount++;
-      name = personsNameReader.ReadLine();
+      nameMale = personsNameMaleReader.ReadLine();
     }
-
-    var surname = presonsSurnameReader.ReadLine();
-    while(surname != null)
+    var nameFamale = personsNameFamaleReader.ReadLine();
+    while(nameFamale != null)
     {
-      surnames.Add(surname.Trim());
+      namesFamale.Add(nameFamale.Trim());
+      namesCount++;
+      nameFamale = personsNameFamaleReader.ReadLine();
+    }
+    #endregion
+
+    #region Surnames
+    var surnameMale = presonsSurnameMaleReader.ReadLine();
+    while(surnameMale != null)
+    {
+      surnamesMale.Add(surnameMale.Trim());
       surnamesCount++;
-      surname = presonsSurnameReader.ReadLine();
+      surnameMale = presonsSurnameMaleReader.ReadLine();
     }
-
-    var patronymic = personsPatronymicsReader.ReadLine();
-    while (patronymic != null)
+    var surnameFamale = presonsSurnameFamaleReader.ReadLine();
+    while(surnameFamale != null)
     {
-      patronymics.Add(patronymic);
-      patronymicsCount++;
-      patronymic = personsPatronymicsReader.ReadLine();
+      surnamesFamale.Add(surnameFamale.Trim());
+      surnamesCount++;
+      surnameFamale = presonsSurnameFamaleReader.ReadLine();
     }
+    #endregion
+
+    #region Patronymics
+    var patronymicMale = personsPatronymicsMaleReader.ReadLine();
+    while (patronymicMale != null)
+    {
+      patronymicsMale.Add(patronymicMale);
+      patronymicsCount++;
+      patronymicMale = personsPatronymicsMaleReader.ReadLine();
+    }
+    
+    var patronymicFamale = personsPatronymicsFamaleReader.ReadLine();
+    while (patronymicFamale != null)
+    {
+      patronymicsMale.Add(patronymicFamale);
+      patronymicsCount++;
+      patronymicFamale = personsPatronymicsFamaleReader.ReadLine();
+    }    
+    #endregion
+    
+    
     var appointment = personsAppointmentsReader.ReadLine();
     while (appointment != null)
     {

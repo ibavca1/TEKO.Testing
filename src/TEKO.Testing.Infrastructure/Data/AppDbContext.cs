@@ -28,8 +28,8 @@ public class AppDbContext : DbContext
       .HasMany(e=>e.TimeOff)
       .WithOne(e=>e.Person)
       .HasForeignKey(e=>e.PersonId);
-    // modelBuilder.Entity<Person>()
-    //   .HasOne(a => a.Appointment);
+    modelBuilder.Entity<Person>()
+      .HasOne(a => a.Appointment);
 
   }
 
