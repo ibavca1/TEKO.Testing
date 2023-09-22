@@ -40,13 +40,13 @@ public static class SeedData
     
     int appointmentsCount = 0;
     var dir = Directory.GetCurrentDirectory();
-    using StreamReader personsNameMaleReader = new StreamReader($"{dir}\\names_male.txt");
-    using StreamReader personsNameFamaleReader = new StreamReader($"{dir}\\names_famale.txt");
-    using StreamReader presonsSurnameMaleReader = new StreamReader($"{dir}\\surnames_male.txt");
-    using StreamReader presonsSurnameFamaleReader = new StreamReader($"{dir}\\surnames_famale.txt");
-    using StreamReader personsPatronymicsMaleReader = new StreamReader($"{dir}\\patronymics_male.txt");
-    using StreamReader personsPatronymicsFamaleReader = new StreamReader($"{dir}\\patronymics_famale.txt");
-    using StreamReader personsAppointmentsReader = new StreamReader($"{dir}\\appointments.txt");
+    using StreamReader personsNameMaleReader = new StreamReader($"{dir}/names_male.txt");
+    using StreamReader personsNameFamaleReader = new StreamReader($"{dir}/names_famale.txt");
+    using StreamReader presonsSurnameMaleReader = new StreamReader($"{dir}/surnames_male.txt");
+    using StreamReader presonsSurnameFamaleReader = new StreamReader($"{dir}/surnames_famale.txt");
+    using StreamReader personsPatronymicsMaleReader = new StreamReader($"{dir}/patronymics_male.txt");
+    using StreamReader personsPatronymicsFamaleReader = new StreamReader($"{dir}/patronymics_famale.txt");
+    using StreamReader personsAppointmentsReader = new StreamReader($"{dir}/appointments.txt");
     var namesMale = new List<string>();
     var namesFamale = new List<string>();
     var surnamesMale = new List<string>();
