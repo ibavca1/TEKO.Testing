@@ -7,7 +7,8 @@ public class Person: EntityBase, IAggregateRoot
   public string? Surname { get; set; }
   public string? Patronymic { get; set; }
   public int Age { get; set; }
-  public Appointment? Appointment { get; set; }
+  public int? AppointmentId { get; set; }
+  public Appointment? Appointment { get; set; } = null!;
   public string?  Gender { get; set; }
   public IEnumerable<TimeOff>? TimeOff { get; set; }
 }

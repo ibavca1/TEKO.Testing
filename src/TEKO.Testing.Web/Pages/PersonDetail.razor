@@ -13,6 +13,8 @@
               @bind-Value="model.Surname" For="@(() => model.Surname)"/>
 <MudTextField Label="Отчество" Variant="Variant.Outlined"
               @bind-Value="model.Patronymic" For="@(() => model.Patronymic)"/>
+<MudTextField Label="Должность" Variant="Variant.Outlined"
+              @bind-Value="model.Appointment" For="@(() => model.Appointment)" Text="@model.Appointment?.Name"/>
 <MudSelect T="double" Label="Price" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
     <MudSelectItem T="double" Value="4.50" />
     <MudSelectItem T="double" Value="4.99" />
@@ -71,6 +73,8 @@
         public int  Age { get; set; }
         [Required]
         public string?  Gender { get; set; }
+        [Required]
+        public Appointment? Appointment { get; set; }
         [Required]
         public   List<Core.PersonAggregate.TimeOff>? TimeOffs { get; set; }
     }

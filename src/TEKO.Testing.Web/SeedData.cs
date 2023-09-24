@@ -115,12 +115,19 @@ public static class SeedData
       appointmentsCount++;
       appointment = personsAppointmentsReader.ReadLine();
     }
+
+    foreach (var item in appointments)
+    {
+      dbContext.Add(new Appointment{Name = item});
+    }
+    
     List<Person> persons = new List<Person>();
     foreach(int number in Enumerable.Range(1, 100))
     {
       var gender = rndGender.Next(0, 2);
       if(gender == 0)
       {
+        var a = appointments.ElementAt(rndPerson.Next(0, appointments.Count));
         persons.Add(item: new Person
         {
           Name = namesMale.ElementAt(rndPerson.Next(0, namesMale.Count)),
@@ -128,10 +135,6 @@ public static class SeedData
           Patronymic = patronymicsMale.ElementAt(rndPerson.Next(0, patronymicsMale.Count)),
           Gender = "М",
           Age = rndPerson.Next(18, 66),
-          Appointment = new Appointment
-          {
-            Name = appointments.ElementAt(rndPerson.Next(0, appointmentsCount))
-          }
         });        
       }
       else
@@ -141,15 +144,14 @@ public static class SeedData
           Name = namesFamale.ElementAt(rndPerson.Next(0, namesFamale.Count)),
           Surname = surnamesFamale.ElementAt(rndPerson.Next(0,surnamesFamale.Count)),
           Patronymic = patronymicsFamale.ElementAt(rndPerson.Next(0, patronymicsFamale.Count)),
-          Gender = "Ж",
-          Age = rndPerson.Next(18,61),
           Appointment = new Appointment
           {
-            Name = appointments.ElementAt(rndPerson.Next(0, appointments.Count-1))
-          }
+            Name = appointments.ElementAt(rndPerson.Next(0, appointments.Count))
+          },
+          Gender = "Ж",
+          Age = rndPerson.Next(18,61),
         });           
       }
-
     }
     foreach (var item in dbContext.Persons)
     {

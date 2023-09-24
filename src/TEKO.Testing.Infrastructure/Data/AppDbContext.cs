@@ -28,9 +28,10 @@ public class AppDbContext : DbContext
       .HasMany(e=>e.TimeOff)
       .WithOne(e=>e.Person)
       .HasForeignKey(e=>e.PersonId);
-    modelBuilder.Entity<Person>()
-      .HasOne(a => a.Appointment);
-
+    modelBuilder.Entity<Appointment>()
+      .HasOne(p => p.Person)
+      .WithOne(a => a.Appointment)
+      .HasForeignKey<Person>(p=>p.AppointmentId);
   }
 
   public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
