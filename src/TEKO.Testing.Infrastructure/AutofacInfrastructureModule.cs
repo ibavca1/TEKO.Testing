@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
 using Ardalis.SharedKernel;
 using Autofac;
-using TEKO.Testing.Core.ContributorAggregate;
 using TEKO.Testing.Core.Interfaces;
 using TEKO.Testing.Infrastructure.Data;
 using TEKO.Testing.Infrastructure.Data.Queries;
-using TEKO.Testing.Infrastructure.Email;
 using TEKO.Testing.UseCases.Contributors.Create;
 using TEKO.Testing.UseCases.Contributors.List;
 using MediatR;
 using MediatR.Pipeline;
+using TEKO.Testing.Core.PersonAggregate;
 using Module = Autofac.Module;
 using TEKO.Testing.UseCases.Persons.List;
 
@@ -41,9 +40,9 @@ public class AutofacInfrastructureModule : Module
   private void LoadAssemblies()
   {
     // TODO: Replace these types with any type in the appropriate assembly/project
-    var coreAssembly = Assembly.GetAssembly(typeof(Contributor));
+    var coreAssembly = Assembly.GetAssembly(typeof(Person));
     var infrastructureAssembly = Assembly.GetAssembly(typeof(AutofacInfrastructureModule));
-    var useCasesAssembly = Assembly.GetAssembly(typeof(CreateContributorCommand));
+    var useCasesAssembly = Assembly.GetAssembly(typeof(CreatePersonCommand));
 
     AddToAssembliesIfNotNull(coreAssembly);
     AddToAssembliesIfNotNull(infrastructureAssembly);
@@ -114,27 +113,12 @@ public class AutofacInfrastructureModule : Module
 
   private void RegisterDevelopmentOnlyDependencies(ContainerBuilder builder)
   {
-    // NOTE: Add any development only services here
-    builder.RegisterType<FakeEmailSender>().As<IEmailSender>()
-      .InstancePerLifetimeScope();
-
-    builder.RegisterType<FakeListContributorsQueryService>()
-      .As<IListContributorsQueryService>()
-      .InstancePerLifetimeScope();
-
-    builder.RegisterType<ListPersonsQueryService>().As<IListPersonsQueryService>().SingleInstance();
 
   }
 
   private void RegisterProductionOnlyDependencies(ContainerBuilder builder)
   {
-    // NOTE: Add any production only (real) services here
-    builder.RegisterType<SmtpEmailSender>().As<IEmailSender>()
-      .InstancePerLifetimeScope();
 
-    //builder.RegisterType<ListContributorsQueryService>()
-    //  .As<IListPersonsQueryService>()
-    //  .InstancePerLifetimeScope();
 
   }
 }

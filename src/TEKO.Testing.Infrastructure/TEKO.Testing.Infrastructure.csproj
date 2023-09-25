@@ -22,4 +22,19 @@
     <ProjectReference Include="..\TEKO.Testing.Core\TEKO.Testing.Core.csproj" />
     <ProjectReference Include="..\TEKO.Testing.UseCases\TEKO.Testing.UseCases.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Remove="Data\Config\ContributorConfiguration.cs" />
+    <Compile Remove="Email\**" />
+    <Compile Remove="Data\Queries\FakeListContributorsQueryService.cs" />
+    <Compile Remove="Data\Queries\ListContributorsQueryService.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Remove="Email\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="Email\**" />
+  </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 ﻿using Ardalis.Result;
-using TEKO.Testing.Core.ContributorAggregate.Events;
+using TEKO.Testing.Core.PersonAggregate.Events;
 using TEKO.Testing.Core.Interfaces;
 using Ardalis.SharedKernel;
 using MediatR;
@@ -30,7 +30,7 @@ public class AddPersonService : IAddPersonService
     if (aggregateToAdd == null) return Result.NotFound();
 
     await _repository.AddAsync(aggregateToAdd);
-    var domainEvent = new ContributorDeletedEvent(person.Id);
+    var domainEvent = new PersonAddEvent(person.Id);
     await _mediator.Publish(domainEvent);
     return Result.Success();
   }

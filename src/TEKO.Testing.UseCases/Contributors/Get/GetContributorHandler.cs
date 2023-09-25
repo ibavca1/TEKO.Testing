@@ -1,7 +1,5 @@
 ﻿using Ardalis.Result;
 using Ardalis.SharedKernel;
-using TEKO.Testing.Core.ContributorAggregate;
-using TEKO.Testing.Core.ContributorAggregate.Specifications;
 
 namespace TEKO.Testing.UseCases.Contributors.Get;
 
@@ -10,7 +8,7 @@ namespace TEKO.Testing.UseCases.Contributors.Get;
 /// </summary>
 public class GetContributorHandler : IQueryHandler<GetContributorQuery, Result<ContributorDTO>>
 {
-  private readonly IReadRepository<Contributor> _repository;
+  private readonly IReadRepository<Person> _repository;
 
   public GetContributorHandler(IReadRepository<Contributor> repository)
   {

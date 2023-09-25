@@ -9,7 +9,7 @@ public class DefaultCoreModule : Module
 {
   protected override void Load(ContainerBuilder builder)
   {
-    builder.RegisterType<DeleteContributorService>()
-        .As<IDeleteContributorService>().InstancePerLifetimeScope();    
+    builder.RegisterType<AddPersonService>()
+        .As<IAddPersonService>().InstancePerLifetimeScope();    
   }
 }

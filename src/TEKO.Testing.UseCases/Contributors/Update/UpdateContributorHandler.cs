@@ -1,21 +1,20 @@
 ﻿using Ardalis.Result;
 using Ardalis.SharedKernel;
-using TEKO.Testing.Core.ContributorAggregate;
 
 namespace TEKO.Testing.UseCases.Contributors.Update;
 
-public class UpdateContributorHandler : ICommandHandler<UpdateContributorCommand, Result<ContributorDTO>>
+public class UpdatePersonHandler : ICommandHandler<UpdatePersonCommand, Result<ContributorDTO>>
 {
-  private readonly IRepository<Contributor> _repository;
+  private readonly IRepository<Core.PersonAggregate.Person> _repository;
 
-  public UpdateContributorHandler(IRepository<Contributor> repository)
+  public UpdatePersonHandler(IRepository<Core.PersonAggregate.Person> repository)
   {
     _repository = repository;
   }
 
-  public async Task<Result<ContributorDTO>> Handle(UpdateContributorCommand request, CancellationToken cancellationToken)
+  public async Task<Result<ContributorDTO>> Handle(UpdatePersonCommand request, CancellationToken cancellationToken)
   {
-    var existingContributor = await _repository.GetByIdAsync(request.ContributorId, cancellationToken);
+    var existingContributor = await _repository.GetByIdAsync(request.PersonId, cancellationToken);
     if (existingContributor == null)
     {
       return Result.NotFound();

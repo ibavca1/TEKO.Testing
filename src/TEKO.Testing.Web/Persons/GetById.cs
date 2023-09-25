@@ -43,8 +43,9 @@ public class GetById : Endpoint<GetPersonByIdRequest, PersonRecord>
     if (result.IsSuccess)
     {
       //TODO: Info not full
-      Response = new PersonRecord(result.Value.Id, result.Value.Name, result.Value.Surname, result.Value.Patronymic,
-        new Appointment(), 0, "");
+      Response = new PersonRecord(result.Value.Id, 
+        result.Value.Name, result.Value.Surname, result.Value.Patronymic,
+        result.Value.appointment, result.Value.Age, result.Value.Gender);
     }
   }
 }
