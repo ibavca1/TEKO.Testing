@@ -1,4 +1,4 @@
-﻿using TEKO.Testing.Core.ContributorAggregate;
+﻿using TEKO.Testing.Core.PersonAggregate;
 using Xunit;
 
 namespace TEKO.Testing.IntegrationTests.Data;
@@ -11,14 +11,17 @@ public class EfRepositoryDelete : BaseEfRepoTestFixture
     // add a Contributor
     var repository = GetRepository();
     var initialName = Guid.NewGuid().ToString();
-    var Contributor = new Contributor(initialName);
-    await repository.AddAsync(Contributor);
+    var person = new Person
+    {
+      Name = initialName
+    };
+    await repository.AddAsync(person);
 
     // delete the item
-    await repository.DeleteAsync(Contributor);
+    await repository.DeleteAsync(person);
 
     // verify it's no longer there
     Assert.DoesNotContain(await repository.ListAsync(),
-        Contributor => Contributor.Name == initialName);
+        person => person.Name == initialName);
   }
 }

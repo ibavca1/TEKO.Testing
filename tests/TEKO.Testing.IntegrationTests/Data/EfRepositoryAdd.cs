@@ -1,4 +1,4 @@
-﻿using TEKO.Testing.Core.ContributorAggregate;
+﻿using TEKO.Testing.Core.PersonAggregate;
 using Xunit;
 
 namespace TEKO.Testing.IntegrationTests.Data;
@@ -8,18 +8,22 @@ public class EfRepositoryAdd : BaseEfRepoTestFixture
   [Fact]
   public async Task AddsContributorAndSetsId()
   {
-    var testContributorName = "testContributor";
-    var testContributorStatus = ContributorStatus.NotSet;
+    var testPersonName = "Anton";
+    var testPersonSurname = "Belonogov";
+    var testPatronymic = "Vasilevich";
     var repository = GetRepository();
-    var Contributor = new Contributor(testContributorName);
-
-    await repository.AddAsync(Contributor);
-
-    var newContributor = (await repository.ListAsync())
+    await repository.AddAsync(new Person
+    {
+      Name = testPersonName,
+      Surname = testPersonSurname,
+      Patronymic = testPatronymic
+    });
+    
+    var newPerson = (await repository.ListAsync())
                     .FirstOrDefault();
 
-    Assert.Equal(testContributorName, newContributor?.Name);
-    Assert.Equal(testContributorStatus, newContributor?.Status);
-    Assert.True(newContributor?.Id > 0);
+    Assert.Equal(testPersonName, newPerson?.Name);
+    Assert.Equal(testPersonSurname, newPerson?.Surname);
+    Assert.True(newPerson?.Id > 0);
   }
 }

@@ -1,9 +1,7 @@
 ﻿using FastEndpoints;
 using MediatR;
-using TEKO.Testing.Web.Endpoints.ContributorEndpoints;
-using TEKO.Testing.UseCases.Contributors.List;
+using TEKO.Testing.UseCases.Persons.List;
 using TEKO.Testing.Web.Persons;
-using TEKO.Testing.Web.PersonsEndpoints;
 
 namespace TEKO.Testing.Web.ContributorEndpoints;
 

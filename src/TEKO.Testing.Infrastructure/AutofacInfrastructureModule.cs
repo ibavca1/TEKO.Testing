@@ -1,14 +1,11 @@
 ﻿using System.Reflection;
 using Ardalis.SharedKernel;
 using Autofac;
-using TEKO.Testing.Core.Interfaces;
 using TEKO.Testing.Infrastructure.Data;
-using TEKO.Testing.Infrastructure.Data.Queries;
-using TEKO.Testing.UseCases.Contributors.Create;
-using TEKO.Testing.UseCases.Contributors.List;
 using MediatR;
 using MediatR.Pipeline;
 using TEKO.Testing.Core.PersonAggregate;
+using TEKO.Testing.UseCases.Persons.Create;
 using Module = Autofac.Module;
 using TEKO.Testing.UseCases.Persons.List;
 

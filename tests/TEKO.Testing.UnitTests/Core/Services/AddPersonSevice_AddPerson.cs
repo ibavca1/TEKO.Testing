@@ -1,5 +1,4 @@
 ﻿using Ardalis.SharedKernel;
-using TEKO.Testing.Core.ContributorAggregate;
 using TEKO.Testing.Core.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -23,10 +22,10 @@ public class AddPersonService_AddPerson
   }
 
   [Fact]
-  public async Task ReturnsNotFoundGivenCantFindContributor()
+  public async Task ReturnsFoundFindPerson()
   {
     var result = await _service.AddPerson(new Person());
 
-    Assert.Equal(Ardalis.Result.ResultStatus.NotFound, result.Status);
+    Assert.Equal(Ardalis.Result.ResultStatus.Ok, result.Status);
   }
 }

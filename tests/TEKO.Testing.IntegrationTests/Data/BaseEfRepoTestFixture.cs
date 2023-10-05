@@ -2,7 +2,7 @@
 using Ardalis.SharedKernel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using TEKO.Testing.Core.ContributorAggregate;
+using TEKO.Testing.Core.PersonAggregate;
 using NSubstitute;
 
 namespace TEKO.Testing.IntegrationTests.Data;
@@ -36,8 +36,8 @@ public abstract class BaseEfRepoTestFixture
     return builder.Options;
   }
 
-  protected EfRepository<Contributor> GetRepository()
+  protected EfRepository<Person> GetRepository()
   {
-    return new EfRepository<Contributor>(_dbContext);
+    return new EfRepository<Person>(_dbContext);
   }
 }

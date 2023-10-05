@@ -1,5 +1,4 @@
-﻿using TEKO.Testing.Core.ContributorAggregate;
-using TEKO.Testing.Infrastructure.Data;
+﻿using TEKO.Testing.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using TEKO.Testing.Core.PersonAggregate;
 
@@ -7,8 +6,6 @@ namespace TEKO.Testing.Web;
 
 public static class SeedData
 {
-  public static readonly Contributor Contributor1 = new("Ardalis");
-  public static readonly Contributor Contributor2 = new("Snowfrog");
   public static int Start { get; set; } = 1672545923;
   public static int End { get; set; } = 1704067199;
   public static void Initialize(IServiceProvider serviceProvider)

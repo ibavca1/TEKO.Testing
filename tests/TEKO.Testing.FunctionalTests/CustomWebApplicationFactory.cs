@@ -1,6 +1,4 @@
 ﻿using TEKO.Testing.Infrastructure.Data;
-using TEKO.Testing.Infrastructure.Data.Queries;
-using TEKO.Testing.UseCases.Contributors.List;
 using TEKO.Testing.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;

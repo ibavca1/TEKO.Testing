@@ -1,7 +1,6 @@
 ﻿using Ardalis.Result;
 using Ardalis.SharedKernel;
 using TEKO.Testing.Core.PersonAggregate;
-using TEKO.Testing.UseCases.Contributors.List;
 
 namespace TEKO.Testing.UseCases.Persons.List;
 
