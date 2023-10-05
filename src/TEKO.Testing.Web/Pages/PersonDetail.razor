@@ -15,14 +15,7 @@
               @bind-Value="model.Patronymic" For="@(() => model.Patronymic)"/>
 <MudTextField Label="Должность" Variant="Variant.Outlined"
               @bind-Value="model.Appointment" For="@(() => model.Appointment)" Text="@model.Appointment?.Name"/>
-<MudSelect T="double" Label="Price" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
-    <MudSelectItem T="double" Value="4.50" />
-    <MudSelectItem T="double" Value="4.99" />
-    <MudSelectItem T="double" Value="3.60" />
-</MudSelect>
-<MudCardActions>
-    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Save</MudButton>
-</MudCardActions>
+
 
 
 <MudCard>
@@ -39,7 +32,7 @@
         base.OnInitialized();
         HttpClient client = Http.CreateClient();
         var resultPersons = client
-            .GetFromJsonAsync<PersonRecord>($"http://localhost:57679/persons/detail/{Id}")
+            .GetFromJsonAsync<PersonRecord>($"http://localhost:5000/persons/detail/{Id}")
             .Result;
         if (resultPersons != null)
             model = new RegisterPersonForm

@@ -132,6 +132,10 @@ public static class SeedData
           Patronymic = patronymicsMale.ElementAt(rndPerson.Next(0, patronymicsMale.Count)),
           Gender = "М",
           Age = rndPerson.Next(18, 66),
+          Appointment = new Appointment
+          {
+            Name = appointments.ElementAt(rndPerson.Next(0, appointments.Count))
+          }
         });        
       }
       else

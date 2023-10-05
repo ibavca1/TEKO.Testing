@@ -77,7 +77,7 @@ else
 app.UseFastEndpoints();
 app.UseSwaggerGen(); 
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 // Seed Database
 using (var scope = app.Services.CreateScope())

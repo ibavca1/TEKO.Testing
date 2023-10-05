@@ -14,6 +14,6 @@ public class ListPersonsQueryService : IListPersonsQueryService
   public async Task<IEnumerable<Person>> ListAsync()
   {
     var result = await _db.Persons.ToListAsync();
-    return result.Select(x=>x);
+    return result;
   }
 }

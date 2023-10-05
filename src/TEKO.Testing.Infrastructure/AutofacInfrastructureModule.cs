@@ -5,6 +5,7 @@ using TEKO.Testing.Infrastructure.Data;
 using MediatR;
 using MediatR.Pipeline;
 using TEKO.Testing.Core.PersonAggregate;
+using TEKO.Testing.Infrastructure.Data.Queries;
 using TEKO.Testing.UseCases.Persons.Create;
 using Module = Autofac.Module;
 using TEKO.Testing.UseCases.Persons.List;
@@ -110,12 +111,15 @@ public class AutofacInfrastructureModule : Module
 
   private void RegisterDevelopmentOnlyDependencies(ContainerBuilder builder)
   {
-
+    builder.RegisterType<ListPersonsQueryService>()
+      .As<IListPersonsQueryService>()
+      .InstancePerLifetimeScope();
   }
 
   private void RegisterProductionOnlyDependencies(ContainerBuilder builder)
   {
-
-
+    builder.RegisterType<ListPersonsQueryService>()
+      .As<IListPersonsQueryService>()
+      .InstancePerLifetimeScope();
   }
 }
