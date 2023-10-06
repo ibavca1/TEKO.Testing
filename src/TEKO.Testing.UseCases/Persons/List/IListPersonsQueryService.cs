@@ -8,5 +8,5 @@ namespace TEKO.Testing.UseCases.Persons.List;
 /// </summary>
 public interface IListPersonsQueryService
 {
-  Task<IEnumerable<Core.PersonAggregate.Person>> ListAsync();
+  Task<IEnumerable<PersonDto>> ListAsync();
 }

@@ -11,9 +11,10 @@ public class ListPersonsQueryService : IListPersonsQueryService
   {
     _db = db;
   }
-  public async Task<IEnumerable<Person>> ListAsync()
+  public async Task<IEnumerable<PersonDto>> ListAsync()
   {
     var result = await _db.Persons.ToListAsync();
-    return result;
+    
+    return new List<PersonDto>();
   }
 }

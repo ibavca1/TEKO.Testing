@@ -1,4 +1,5 @@
 ﻿
+using System.Reflection;
 using Ardalis.SharedKernel;
 
 using Microsoft.EntityFrameworkCore;
@@ -24,10 +25,17 @@ public class AppDbContext : DbContext
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     base.OnModelCreating(modelBuilder);
+    modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     modelBuilder.Entity<Person>()
       .HasMany(e=>e.TimeOff)
       .WithOne(e=>e.Person)
       .HasForeignKey(e=>e.PersonId);
+    
+    modelBuilder.Entity<Person>()
+      .HasOne(p => p.Appointment)
+      .WithOne()
+      .HasForeignKey<Person>(k => k.AppointmentId);
+    
     modelBuilder.Entity<Appointment>()
       .HasOne(p => p.Person)
       .WithOne(a => a.Appointment)

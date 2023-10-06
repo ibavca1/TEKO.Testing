@@ -1,6 +1,7 @@
-﻿using Ardalis.Result;
+﻿using Ardalis.GuardClauses;
+using Ardalis.Result;
 using Ardalis.SharedKernel;
-
+using Ardalis.Specification;
 using TEKO.Testing.Core.PersonAggregate;
 using TEKO.Testing.Core.PersonAggregate.Specifications;
 
@@ -8,7 +9,7 @@ using TEKO.Testing.Core.PersonAggregate.Specifications;
 namespace TEKO.Testing.UseCases.Persons.Get;
 
 
-public class GetPersonHandler : IQueryHandler<GetPersonQuery, Result<PersonDTO>>
+public class GetPersonHandler : IQueryHandler<GetPersonQuery, Result<PersonDto>>
 {
   private readonly IReadRepository<Core.PersonAggregate.Person> _repository;
 
@@ -17,22 +18,22 @@ public class GetPersonHandler : IQueryHandler<GetPersonQuery, Result<PersonDTO>>
     _repository = repository;
   }
 
-  public async Task<Result<PersonDTO>> Handle(GetPersonQuery request, CancellationToken cancellationToken)
+  public async Task<Result<PersonDto>> Handle(GetPersonQuery request, CancellationToken cancellationToken)
   {
-    var spec = new PersonByIdSpec(request.PersonId);
-    var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
-    if (entity == null) return Result.NotFound();
+    var specPerson = new PersonByIdSpec(request.PersonId);
+    var person = await _repository.FirstOrDefaultAsync(specPerson, cancellationToken);
 
-    if (entity.Appointment != null)
+    if (person?.Appointment != null)
     {
-      return new PersonDTO(entity.Id,
-        entity.Name!,
-        entity.Surname!,
-        entity.Patronymic!,
-        entity.Gender!,
-        entity.Age,
-        entity.Appointment,
-        entity.TimeOff ?? new List<TimeOff>());
+      return new PersonDto(
+        person.Id,
+        person.Name!,
+        person.Surname!,
+        person.Patronymic!,
+        person.Gender!,
+        person.Age,
+        person.Appointment,
+        person.TimeOff = new List<TimeOff>());
     }
     else
     {
